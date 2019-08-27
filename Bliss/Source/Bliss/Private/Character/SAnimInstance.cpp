@@ -47,10 +47,7 @@ void USAnimInstance::UpdateAnimationProperties(float DeltaTime)
 					}
 				}
 				else {
-					MovementDirection = OwnerCharacter->MovementDirection; // Assign movement direction
-
-					// Receive initial direction after a delay of 0.1 second
-					GetWorld()->GetTimerManager().SetTimer(TimerHandle_ReceiveInitialDirection, this, &USAnimInstance::ReceiveInitialDirection, 0.1f, false);
+					SetDirectionAndReceiveMovementDirection();
 				}
 			}
 			else {
@@ -58,14 +55,7 @@ void USAnimInstance::UpdateAnimationProperties(float DeltaTime)
 					bReceivedInitialDirection = false;
 				}
 			}
-
 		}
 	}
-
-}
-
-void USAnimInstance::ReceiveInitialDirection()
-{
-	bReceivedInitialDirection = true;
 
 }

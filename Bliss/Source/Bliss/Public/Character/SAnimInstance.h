@@ -22,7 +22,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 		float InputY_Anim;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 		float MovementDirection;
 
 	bool bIsSprinting;
@@ -41,20 +41,17 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 		float MovementSpeed;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 		bool bReceivedInitialDirection;
-
-	FTimerHandle TimerHandle_ReceiveInitialDirection;
-
-	/* Functions */
-	// Events
-	// Called to receive initial direction
-	void ReceiveInitialDirection();
 
 public:
 	/* Functions */
 	// Called to update animation properties
 	UFUNCTION(BlueprintCallable)
 		void UpdateAnimationProperties(float DeltaTime);
+
+	// Called in anim blueprint to assign direction value and receive initial direcion
+	UFUNCTION(BlueprintImplementableEvent)
+		void SetDirectionAndReceiveMovementDirection();
 
 };
